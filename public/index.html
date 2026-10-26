@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserva tu cita · Barbería</title>
+<meta name="description" content="Reserva tu corte en línea: elige barbero, sede y horario disponible.">
+<meta name="theme-color" content="#0f0f0f">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="brand">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+    <h1 id="negocio">Barbería</h1>
+    <p>Reserva en línea</p>
+  </header>
+
+  <div class="layout">
+    <main class="card">
+      <ol class="steps" id="steps" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+
+      <section class="step" id="s1">
+        <h2 class="step-title">¿Qué servicio necesitas?</h2>
+        <p class="step-sub">Elige uno para ver precio y duración.</p>
+        <div class="options" id="optServicios" role="group" aria-label="Servicios"></div>
+      </section>
+
+      <section class="step" id="s2" hidden>
+        <h2 class="step-title">Barbero y sede</h2>
+        <p class="step-sub">Solo mostramos las combinaciones que atienden.</p>
+        <div class="group-label">Sede</div>
+        <div class="options" id="optSedes" role="group" aria-label="Sedes"></div>
+        <div class="group-label">Barbero</div>
+        <div class="options" id="optBarberos" role="group" aria-label="Barberos"></div>
+      </section>
+
+      <section class="step" id="s3" hidden>
+        <h2 class="step-title">Fecha y hora</h2>
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha">
+        <div class="group-label">Horas disponibles</div>
+        <div id="slots" class="slots" role="group" aria-label="Horas disponibles" aria-live="polite"></div>
+        <label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--text);margin-top:18px">
+          <input type="checkbox" id="repetir" style="width:auto"> Repetir a la misma hora en otras fechas
+        </label>
+        <div id="extraBox" hidden>
+          <div class="extra-dates" id="extraDates"></div>
+          <button type="button" class="btn sm" id="addFecha" style="margin-top:8px">+ Agregar fecha</button>
+        </div>
+      </section>
+
+      <section class="step" id="s4" hidden>
+        <h2 class="step-title">Tus datos</h2>
+        <form id="form" novalidate>
+          <div class="row two">
+            <div><label for="nombre">Nombre completo</label><input id="nombre" autocomplete="name" required maxlength="100"></div>
+            <div><label for="telefono">Teléfono</label><input id="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="3001234567" required></div>
+          </div>
+          <div class="row two">
+            <div><label for="email">Correo (opcional)</label><input id="email" type="email" autocomplete="email" placeholder="para recibir confirmación"></div>
+            <div><label for="pago">Forma de pago</label><select id="pago"></select></div>
+          </div>
+          <input class="hp" id="web" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </form>
+      </section>
+
+      <div id="msg" role="status" aria-live="polite"></div>
+      <div class="nav">
+        <button type="button" class="btn" id="back" hidden>Atrás</button>
+        <button type="button" class="btn primary" id="next" disabled style="margin-left:auto">Continuar</button>
+      </div>
+    </main>
+
+    <aside class="card summary" aria-label="Resumen de la reserva">
+      <h2>Tu reserva</h2>
+      <dl id="resumen"><dd style="color:var(--muted)">Aún no has elegido nada.</dd></dl>
+      <div class="total" id="total" hidden></div>
+    </aside>
+  </div>
+
+  <p class="footer">¿Ya tienes una reserva? <button class="link" id="openConsulta">Consultar o cancelar</button></p>
+</div>
+
+<dialog id="dlgOk"><h2>¡Reserva confirmada!</h2><div id="okBody"></div><div class="nav"><button class="btn primary" id="okClose" style="margin-left:auto">Listo</button></div></dialog>
+
+<dialog id="dlgConsulta">
+  <h2>Consultar reserva</h2>
+  <label for="cCodigo">Código</label><input id="cCodigo" maxlength="12" style="text-transform:uppercase">
+  <label for="cTel">Teléfono</label><input id="cTel" type="tel">
+  <div id="cOut" aria-live="polite"></div>
+  <div class="nav"><button class="btn" id="cClose">Cerrar</button><button class="btn primary" id="cBuscar">Buscar</button></div>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>

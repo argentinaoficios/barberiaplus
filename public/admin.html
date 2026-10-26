@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Administración · Barbería</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="brand"><h1>Administración</h1><p>Panel de la barbería</p></header>
+
+  <section class="card" id="loginBox" style="max-width:380px;margin:0 auto">
+    <label for="pass">Contraseña</label>
+    <input id="pass" type="password" autocomplete="current-password">
+    <div id="loginMsg" aria-live="polite"></div>
+    <div class="nav"><button class="btn primary" id="loginBtn" style="margin-left:auto">Ingresar</button></div>
+  </section>
+
+  <div id="panel" hidden>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="view" class="card"></div>
+    <p class="footer"><button class="link" id="logout">Cerrar sesión</button></p>
+  </div>
+</div>
+<script src="/admin.js"></script>
+</body>
+</html>
